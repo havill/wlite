@@ -47,7 +47,7 @@ int main(int argc, char **argv) {
             }
             if (length >= sizeof(s)) abort();
             s[length++] = c;
-            n = (ssize_t) mbrtowc(&u, s, length, &ps);
+            n = (ssize_t) mbrtowc(&u, (const char *) s, length, &ps);
             if (n == -1 || errno != 0) {
                 char msg[80];
 
