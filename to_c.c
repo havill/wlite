@@ -41,11 +41,11 @@ void set_bit(wchar_t c, wlite_bitarray_t_ *bits, int bit) {
 
 void add_map(wchar_t c, wchar_t to, wlite_map_t_ *map[], size_t *n) {
     if (c > WLITE_WCHAR_MAX) {
-        fprintf(stderr, "ignoring high char: %lX\n", c);
+        fprintf(stderr, "ignoring high char: %lX\n", (unsigned long) c);
         return;
     }
     if (to > WLITE_WCHAR_MAX) {
-        fprintf(stderr, "ignoring high char: %lX\n", to);
+        fprintf(stderr, "ignoring high char: %lX\n", (unsigned long) to);
         return;
     }
     *map = realloc(*map, (*n + 1) * sizeof(wlite_map_t_));

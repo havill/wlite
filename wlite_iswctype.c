@@ -205,6 +205,9 @@ wlite_iswctype(wlite_wint_t c, wlite_wctype_t desc) {
             return !0;
         default: return 0;
         }
+    case wlite_id1_: //TODO
+    case wlite_id2ton_: //TODO
+    ;
 #endif
     }
     return 0;
