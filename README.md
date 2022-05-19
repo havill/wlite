@@ -31,4 +31,4 @@ GNU make targets, including (but not limited to):
 * `make`: will create a library / archive file that can be used to staticly link to C object files to produce a binary executable
 * `make check`: will run simple unit/sanity tests against the compiled library
 * `make install`: will install the archive/library and header file in the standard place on your system (usually `/usr/local/lib` and `/usr/local/include` on POSIX systems)
-* make uninstall: will remove the files installed by the above command
+* `make uninstall`: will remove the files installed by the above command
