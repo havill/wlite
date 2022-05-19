@@ -21,7 +21,7 @@ So instead of including a full glibc 2 on this floppy environment, a specialized
 relatively modern Standard C Wide Character library <wchar> which was used to provide standardized Unicode UCS-2 (16 bit Java "char" compatible)
 string handling and transformations back and forth to the multibyte Unicode UTF-8 encoding.
   
-This library fills that gap. It provides a Standard C 99 strictly compliant library.
+This library fills that gap. It provides a Standard C 99 strictly compliant library for either freestanding C systems or hosted C systems (via macro overrides).
   
 # Configuring & Installing
   
