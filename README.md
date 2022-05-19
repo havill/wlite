@@ -23,13 +23,12 @@ string handling and transformations back and forth to the multibyte Unicode UTF-
   
 This library fills that gap. It provides a Standard C 99 strictly compliant library.
   
-Additionally, this library provides addition features that go above and beyond what Standard C requires for East Asian, especially Japanese, support:
+# Configuring & Installing
   
-* Japanese kana, full & half width character transformations for natural language string collation and sorting
-* Japanese monowidth full/half width character and string width measurement (for non-proportion dumb terminal cursor control)
-* Extended Character classification that understands space, digits, alphabet, and Japanese characters
+wlite can be compiled and installed on any system with a GNU compiler & toolchain. The make file understands and uses almost all the common
+GNU make targets, including (but not limited to):
   
-# Limitations
-  
-* Unlike glibc (but still compliant with Standard C), it provides an implementation of `wchar_t` that is 2 bytes long. For this reason, it is *not* binary compatible with glibc or other 32-bit implementations.
-* Because the wide character support is only 16 bits (Unicode is 20-bits), support is only possible for characters in Plane 0 (the BMP: basic multilingual plane). Surrogate characters are handled to allow for strings using Unicode planes 1 to 15, but character classification and collation functions do not support these characters.
+* `make`: will create a library / archive file that can be used to staticly link to C object files to produce a binary executable
+* `make check`: will run simple unit/sanity tests against the compiled library
+* `make install`: will install the archive/library and header file in the standard place on your system (usually `/usr/local/lib` and `/usr/local/include` on POSIX systems)
+* make uninstall: will remove the files installed by the above command
