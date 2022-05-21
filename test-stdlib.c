@@ -58,7 +58,7 @@ int main(int argc, char **argv) {
     test(mbtowc(&wcs[0], "", 1) == 0 && wcs[0] == 0);
     test(wctomb(mbs, wcs[0]) == 1 && mbs[0] == '\0');
 
-    printf("MB_CUR_MAX = %u\n", MB_CUR_MAX);
+    printf("MB_CUR_MAX = %zu\n", MB_CUR_MAX);
     puts(mbtowc(NULL, NULL, 0) ? "mbs shift states" : "mbs stateless");
 
     return 0;
