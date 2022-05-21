@@ -28,12 +28,10 @@ extern const wlite_bitarray_t_ wlite_ambi[];
 int
 wlite_iswctype(wlite_wint_t c, wlite_wctype_t desc) {
     wlite_wc_t_ wc = (wlite_wc_t_) c;
-    wlite_map_t_ key;
     void *found;
     const void *base;
     size_t nelem, size;
 
-    key.from = wc;
     switch (desc) {
     case wlite_alnum_:
         return wlite_iswctype(c,wlite_alpha_) || wlite_iswctype(c,wlite_digit_);
