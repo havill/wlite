@@ -32,3 +32,15 @@ GNU make targets, including (but not limited to):
 * `make check`: will run simple unit/sanity tests against the compiled library
 * `make install`: will install the archive/library and header file in the standard place on your system (usually `/usr/local/lib` and `/usr/local/include` on POSIX systems)
 * `make uninstall`: will remove the files installed by the above command
+  
+## Compile Options
+  
+* `make SMALL=1`: if `SMALL` is defined (doesn't matter if it's set to 1, 0, true, or false), it will compile the source with the following features **disabled**:
+  * `WLITE_EXTENSIONS=0`: <wcctype.h> & <wcsxfrm.h> extensions for Japanese (and some Korean and Chinese) Unicode will be disabled
+  * `WLITE_AMBI_LOCALE=0`: wlite will not compile in Unicode data used to determine, based on the current locale, what monospaced width ambiguous characters are.
+  * `WLITE_ENVIRONMENT=0`: wlite will only use the environment variable `WLITE_LC_ALL` to determine the behavior of locale sensitive functions.
+* `make LARGE=1` if `LARGE` is defined (doesn't matter if it's set to 1, 0, true, or false), it will compile the source with the following features **enabled**:
+  * `WLITE_XBMP_CHAR=1`: support past the first 64K Plane 0, the BMP (basic multilingual plane) will be enabled
+* `make DEBUG=1`: if `DEBUG` is defined, all of the compiler's warnings will be enabled and machine code will not be optimized. Additionally, because C is not memory managed, DEBUG can be defined to the following values to assist in memory allocation, deallocation, and dangling pointer management:
+  * `make DEBUG=dmalloc`: will be compiled and linked to your installed [the dmalloc library](https://dmalloc.com/), using the "dmalloc" versions of memory allocaton
+  * `make DEBUG=efence`: will be compiled and linked to your installed [Electric Fence library](https://elinux.org/Electric_Fence), used to detect out of bounds memory references.
