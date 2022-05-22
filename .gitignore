@@ -51,6 +51,8 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+.vscode
+
 CaseFolding.dat.c
 EastAsianWidth.dat.c
 UnicodeData.dat.c
