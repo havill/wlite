@@ -44,3 +44,9 @@ GNU make targets, including (but not limited to):
 * `make DEBUG=1`: if `DEBUG` is defined, all of the compiler's warnings will be enabled and machine code will not be optimized. Additionally, because C is not memory managed, DEBUG can be defined to the following values to assist in memory allocation, deallocation, and dangling pointer management:
   * `make DEBUG=dmalloc`: will be compiled and linked to your installed [the dmalloc library](https://dmalloc.com/), using the "dmalloc" versions of memory allocaton
   * `make DEBUG=efence`: will be compiled and linked to your installed [Electric Fence library](https://elinux.org/Electric_Fence), used to detect out of bounds memory references.
+
+## Configuration Options
+
+Other options that can be compiled in or out of the library can be controlled via C preprocessor macros listed and documented in the file `wlite_config.h`.
+Every option and what it does is documented within that file. Macros can be set on the compiler/preprocessor command rather if you do not wish to edit the
+file.
