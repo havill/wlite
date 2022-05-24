@@ -122,7 +122,7 @@
  * compressed in it, the width is probably two.
  */
 #ifndef WLITE_FFFD_WIDTH
-#define WLITE_FFFD_WIDTH                   2
+#define WLITE_FFFD_WIDTH                   1
 #endif
 
 /*****************************************************************************/
