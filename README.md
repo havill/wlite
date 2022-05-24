@@ -51,19 +51,19 @@ Other options that can be compiled in or out of the library can be controlled vi
 Every option and what it does is documented within that file. Macros can be set on the compiler/preprocessor command rather if you do not wish to edit the
 file.
 
-* `WLITE_REDEF_STDC`: if true, macros will be defined so that standard identifiers normally defined for wide character support in <stdlib.h> and <wchar.h>
+* `WLITE_REDEF_STDC`: (default setting: `!0`) If true, macros will be defined so that standard identifiers normally defined for wide character support in <stdlib.h> and <wchar.h>
    will all be re-mapped and re-written so that the relevant identifiers in your code will be prefixed with `wlite_` so they will link to this library.
-* `WLITE_LC_ALL`: if `WLITE_ENVIRONMENT` is definied as false (probably because your freestanding environment does not have or has incorrectly
+* `WLITE_LC_ALL`: (default setting: `C`) if `WLITE_ENVIRONMENT` is definied as false (probably because your freestanding environment does not have or has incorrectly
    functioning <locale.h> support), this id (which is *not* a string surrounded by double quotes) will specify the locale the functions should assume. Four locales are supported:
    * `C`: an ASCII locale where the functions behave like a default hosted C environment that has not called `setlocale()`
    * `ja`: a locale for Unicode based Japanese
    * `zh`: a locale for Unicode based Chinese (simplified and traditional characters)
    * `ko`: a locale for Unicode based Korean (Hangul characters, both precomposed and combining)
-* `WLITE_READ_6_BYTE_UTF8_SURROGATE`: a surrogate sequence (a character from Plane 1 to 15 represented by 2 16-bit Unicode characters) should normally
+* `WLITE_READ_6_BYTE_UTF8_SURROGATE`: (default setting: `0`) a surrogate sequence (a character from Plane 1 to 15 represented by 2 16-bit Unicode characters) should normally
    be encoded as a 4 byte UTF-8 sequence. There are some broken implementations that will convert it literally as two separate 3 byte UTF-8 characters.
    This is technically illegal and broken behavior, but the ability to convert into this broken sequence is provided for freestanding systems that
    have no other correct option.
-* `WLITE_FFFD_WIDTH`: the width of U+FFFD depends on the substitute glyph (if any) used to
+* `WLITE_FFFD_WIDTH`: (default setting: `1`) the width of U+FFFD depends on the substitute glyph (if any) used to
    represent it. If you use "?" (ex. Java based character conversion), or a middle dot or
    small filled rectangle (ex. Windows), the width is one. If you use something
    like the replacement glyphs <http://crl.nmsu.edu/~mleisher/lr.html> or the
