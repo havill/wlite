@@ -70,3 +70,43 @@ file.
    ideograph replacement character (U+3013) (which is convenient because it
    already exists in most legacy CJK fonts), or a square with four hex symbols
    compressed in it, the width is probably two.
+
+# wlite Extensions
+  
+### NAME
+  
+wctrans - wide-character translation mapping
+  
+### SYNOPSYS
+
+```
+#include "wlite_wctype.h"
+
+wctrans_t wctrans(const char *name);
+```
+  
+### DESCRIPTION
+  
+The `wctrans_t` type represents a mapping which can map a wide
+character to another wide character.  Its nature is
+implementation-dependent, but the special value `(wctrans_t) 0`
+denotes an invalid mapping.  Nonzero `wctrans_t` values can be
+passed to the `towctrans` function to actually perform the wide-
+character mapping.
+
+The `wctrans()` function returns a mapping, given by its name.  The
+set of valid names depends on the `LC_CTYPE` category of the
+current locale, but the following names are valid in all locales.
+
+- `"tolower"` - realizes the tolower(3) mapping
+- `"toupper"` - realizes the toupper(3) mapping
+- **`"katakana"` - realizes a mapping from Japanese hiragana to katakana**
+- **`"fixwidth"` - realizes a mapping that normalizes half-width kana and full-width alphanumeric characters and punctuation**
+  
+### RETURN VALUE
+  
+The `wctrans()` function returns a mapping descriptor if the name is valid.  Otherwise, it returns `(wctrans_t) 0`.
+  
+### NOTES
+
+The behavior of `wctrans()` depends on the `LC_CTYPE` category of the current locale.
