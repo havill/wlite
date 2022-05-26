@@ -98,8 +98,8 @@ The `wctrans()` function returns a mapping, given by its name.  The
 set of valid names depends on the `LC_CTYPE` category of the
 current locale, but the following names are valid in all locales.
 
-- `"tolower"` - realizes the tolower(3) mapping
-- `"toupper"` - realizes the toupper(3) mapping
+- `"tolower"` - realizes the `tolower` mapping
+- `"toupper"` - realizes the `toupper` mapping
 - **`"katakana"` - realizes a mapping from Japanese hiragana to katakana**
 - **`"fixwidth"` - realizes a mapping that normalizes half-width kana and full-width alphanumeric characters and punctuation**
   
