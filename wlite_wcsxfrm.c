@@ -46,8 +46,8 @@ wlite_wcsxfrm(wchar_t *s1, const wchar_t *s2, size_t n) {
         }
         else {
             c = wlite_towctrans(c, wlite_tolower_);
-            c = wlite_towctrans(c, wlite_tocase_);
 #if WLITE_EXTENSIONS
+            c = wlite_towctrans(c, wlite_tocase_);
             c = wlite_towctrans(c, wlite_tokata_);
             c = wlite_towctrans(c, wlite_tonorm_);
             if (wlite_iswctype(c, wlite_ignore_)) continue;
