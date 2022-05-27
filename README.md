@@ -66,8 +66,7 @@ file.
 * `WLITE_FFFD_WIDTH`: (default setting: `1`) the width of U+FFFD depends on the substitute glyph (if any) used to
    represent it. If you use "?" (ex. Java based character conversion), or a middle dot or
    small filled rectangle (ex. Windows), the width is one. If you use something
-   like the replacement glyphs <http://crl.nmsu.edu/~mleisher/lr.html> or the
-   ideograph replacement character (U+3013) (which is convenient because it
+   like a replacement glyph font or the ideograph replacement character <U+3013> (which is convenient because it
    already exists in most legacy CJK fonts), or a square with four hex symbols
    compressed in it, the width is probably two.
 
