@@ -109,3 +109,50 @@ The `wctrans()` function returns a mapping descriptor if the name is valid.  Oth
 ### NOTES
 
 The behavior of `wctrans()` depends on the `LC_CTYPE` category of the current locale.
+
+### NAME
+  
+wctype - wide-character classification
+
+### SYNOPSYS
+
+```
+#include "wlite_wctype.h"
+
+wctype_t wctype(const char *name);
+```
+  
+### DESCRIPTION
+  
+The `wctype_t` type represents a property which a wide character
+may or may not have.  In other words, it represents a class of
+wide characters.  This type's nature is implementation-dependent,
+but the special value `(wctype_t) 0` denotes an invalid property.
+Nonzero wctype_t values can be passed to the `iswctype` function
+to actually test whether a given wide character has the property.
+
+The `wctype()` function returns a property, given by its name.  The
+set of valid names depends on the `LC_CTYPE` category of the
+current locale, but the following names are valid in all locales.
+
+-  "alnum" - realizes the `isalnum` classification function
+-  "alpha" - realizes the `isalpha` classification function
+-  "blank" - realizes the `isblank` classification function
+-  "cntrl" - realizes the `iscntrl` classification function
+-  "digit" - realizes the `isdigit` classification function
+-  "graph" - realizes the `isgraph` classification function
+-  "lower" - realizes the `islower` classification function
+-  "print" - realizes the `isprint` classification function
+-  "punct" - realizes the `ispunct` classification function
+-  "space" - realizes the `isspace` classification function
+-  "upper" - realizes the `isupper` classification function
+-  "xdigit" - realizes the `isxdigit` classification function
+  
+### RETURN VALUE
+  
+The `wctype()` function returns a property descriptor if the name
+is valid.  Otherwise, it returns `(wctype_t) 0.`
+  
+### NOTES
+
+The behavior of `wctype()` depends on the `LC_CTYPE` category of the current locale.
