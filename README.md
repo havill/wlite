@@ -73,7 +73,7 @@ file.
 # wlite Extensions
 # wctrans - wide-character translation mapping
   
-### SYNOPSYS
+## SYNOPSYS
 
 ```
 #include "wlite_wctype.h"
@@ -81,7 +81,7 @@ file.
 wctrans_t wctrans(const char *name);
 ```
   
-### DESCRIPTION
+## DESCRIPTION
   
 The `wctrans_t` type represents a mapping which can map a wide
 character to another wide character.  Its nature is
@@ -99,16 +99,16 @@ current locale, but the following names are valid in all locales.
 - **`"katakana"` - realizes a mapping from Japanese hiragana to katakana**
 - **`"fixwidth"` - realizes a mapping that normalizes half-width kana and full-width alphanumeric characters and punctuation**
   
-### RETURN VALUE
+## RETURN VALUE
   
 The `wctrans()` function returns a mapping descriptor if the name is valid.  Otherwise, it returns `(wctrans_t) 0`.
   
-### NOTES
+## NOTES
 
 The behavior of `wctrans()` depends on the `LC_CTYPE` category of the current locale.
 # wctype - wide-character classification
 
-### SYNOPSYS
+## SYNOPSYS
 
 ```
 #include "wlite_wctype.h"
@@ -116,7 +116,7 @@ The behavior of `wctrans()` depends on the `LC_CTYPE` category of the current lo
 wctype_t wctype(const char *name);
 ```
   
-### DESCRIPTION
+## DESCRIPTION
   
 The `wctype_t` type represents a property which a wide character
 may or may not have.  In other words, it represents a class of
@@ -142,11 +142,11 @@ current locale, but the following names are valid in all locales.
 -  "upper" - realizes the `isupper` classification function
 -  "xdigit" - realizes the `isxdigit` classification function
   
-### RETURN VALUE
+## RETURN VALUE
   
 The `wctype()` function returns a property descriptor if the name
 is valid.  Otherwise, it returns `(wctype_t) 0.`
   
-### NOTES
+## NOTES
 
 The behavior of `wctype()` depends on the `LC_CTYPE` category of the current locale.
