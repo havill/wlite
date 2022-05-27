@@ -71,10 +71,7 @@ file.
    compressed in it, the width is probably two.
 
 # wlite Extensions
-  
-### NAME
-  
-wctrans - wide-character translation mapping
+# wctrans - wide-character translation mapping
   
 ### SYNOPSYS
 
@@ -109,10 +106,7 @@ The `wctrans()` function returns a mapping descriptor if the name is valid.  Oth
 ### NOTES
 
 The behavior of `wctrans()` depends on the `LC_CTYPE` category of the current locale.
-
-### NAME
-  
-wctype - wide-character classification
+# wctype - wide-character classification
 
 ### SYNOPSYS
 
