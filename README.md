@@ -141,7 +141,19 @@ current locale, but the following names are valid in all locales.
 -  "space" - realizes the `isspace` classification function
 -  "upper" - realizes the `isupper` classification function
 -  "xdigit" - realizes the `isxdigit` classification function
-  
+
+-  **"ambiw" - realizes the monospaced font ambiguous width property**
+-  **"fullw" - realizes the monospaced font full (double) width character property**
+-  **"halfw" - realizes the monospaced font half (normal) width character property**
+-  **"han"   - realizes the CJKV ideographic character property**
+-  **"hangul" - realizes the Korean Hangul character property**
+-  **"hira" - realizes the Japanese hiragana character property**
+-  **"ident1" - realizes the 1st character of an identifier property**
+-  **"identn" - realizes the 2nd+ character of an identifier property**
+-  **"ignore" - realizes characters that can be ignored property**
+-  **"kana" - realizes the Japanese hiragana/katakana character property**
+-  **"kata" - realizes the Japanese katakana character property**
+
 ## RETURN VALUE
   
 The `wctype()` function returns a property descriptor if the name
