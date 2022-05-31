@@ -16,8 +16,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <errno.h>   // errno, EILSEQ, ERANGE
-#include <limits.h>  // INT_MIN, ULONG_MAX, LONG_MIN
+#include <errno.h>          // errno, EILSEQ, ERANGE / FIXME: freestanding
+#include <limits.h>         // INT_MIN, ULONG_MAX, LONG_MIN
 
 #include "wlite_config.h"   // wchar_t, NULL, size_t
 

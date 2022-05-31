@@ -16,7 +16,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <time.h>    // struct tm
+#include <time.h>           // struct tm / FIXME: freestanding
 
 #include "wlite_config.h"   // wchar_t, NULL, size_t
 

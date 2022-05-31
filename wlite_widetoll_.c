@@ -16,7 +16,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <limits.h>  // INT_MIN, ULONG_MAX, LONG_MIN
+#include <limits.h>         // INT_MIN, ULONG_MAX, LONG_MIN
 #include "wlite_config.h"   // wchar_t, NULL, size_t
 
 #include "wlite_wchar.h"    // prototypes

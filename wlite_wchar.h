@@ -24,7 +24,7 @@
 /*****************************************************************************/
 
 #include <stddef.h>   /* wchar_t, size_t, NULL */
-#include <time.h>     /* struct tm */
+#include <time.h>     /* struct tm / FIXME: freestanding */
 
 #if !defined WLITE_WEOF
     #define WLITE_WEOF           ((wchar_t)-1)
@@ -105,7 +105,7 @@ wchar_t*       wlite_wmemset  (wchar_t*,wchar_t,size_t);
      */
 
     #include <limits.h>     /* MB_LEN_MAX */
-    #include <stdlib.h>     /* MB_CUR_MAX */
+    #include <stdlib.h>     /* MB_CUR_MAX: FIXME: not in freestanding */
 
     #undef MB_CUR_LEN
     #undef MB_MAX_LEN

@@ -46,7 +46,7 @@ int            wlite_wctomb   (char*,wchar_t);
      */
 
     #include <limits.h>     /* MB_LEN_MAX */
-    #include <stdlib.h>     /* MB_CUR_MAX */
+    #include <stdlib.h>     /* MB_CUR_MAX / FIXME: freestanding */
 
     #undef MB_CUR_LEN
     #undef MB_MAX_LEN
