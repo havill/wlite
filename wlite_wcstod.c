@@ -16,10 +16,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <stdbool.h>
 #include <errno.h>          // errno, EILSEQ, ERANGE / FIXME: freestanding
 #include <locale.h>         // FIXME: freestanding
-#include <float.h>
-#include <limits.h>         // INT_MIN, ULONG_MAX, LONG_MIN
 
 #include "wlite_config.h"   // wchar_t, NULL, size_t
 
@@ -27,49 +26,102 @@
 #include "wlite_wctype.h"
 #include "wlite_stdlib.h"
 
-#include "wlite_xmath.h"
-
-#define  SIG_MAX    32
-
 double
-wlite_wcstod(const wchar_t *s, wchar_t **endptr) {
-    /* convert string to double, with checking */
+wlite_wcstod(const wchar_t *str, wchar_t **endptr) {
+    double result = 0.0;
+    wchar_t signedResult = L'\0';
+    wchar_t signedExponent = L'\0';
+    int decimals = 0;
+    bool isExponent = false;
+    bool hasExponent = false;
+    bool hasResult = false;
+    // exponent is logically int but is coded as double so that its eventual
+    // overflow detection can be the same as for double result
+    double exponent = 0;
+    wchar_t c;
 
-    const wchar_t point = localeconv()->decimal_point[0];
-    const wchar_t *sc;
-    wchar_t buf[SIG_MAX], sign;
-    double x;
-    int ndigit, nsig, nzero, olead, opoint;
-
-    for (sc = s; isspace(*sc); ++sc)
-        ;
-    sign = *sc == '-' || *sc == '+' ? *sc++ : '+';
-    olead = -1, opoint = -1;
-    for (ndigit = 0, nsig = 0, nzero = 0; ; ++sc)
-        if (*sc == point)
-            if (0 <= opoint)
-                break;              /* already seen point */
-            else
-                opoint = ndigit;
-        else if (*sc == '0')
-            ++nzero, ++ndigit;
-        else if (!isdigit(*sc))
-            break;
-        else {                      /* got a nonzero digit */
-            if (olead < 0)
-                olead = nzero, nzero = 0;
-            else                    /* deliver zeros */
-                for (; 0 < nzero && nsig < SIG_MAX; --nzero)
-                    buf[nsig++] = 0;
-            ++ndigit;
-            if (nsig < SIG_MAX)     /* deliver digit */
-                buf[nsig++] = *sc - '0';
+    for (; L'\0' != (c = *str); ++str) {
+        if ((c >= L'0') && (c <= L'9')) {
+            int digit = c - L'0';
+            if (isExponent) {
+                exponent = (10 * exponent) + digit;
+                hasExponent = true;
+            }
+            else if (decimals == 0) {
+                result = (10 * result) + digit;
+                hasResult = true;
+            }
+            else {
+                result += (double) digit / decimals;
+                decimals *= 10;
+            }
+            continue;
         }
-    if (ndigit == 0) {              /* set endptr */
-        if (endptr)
-            *endptr = (wchar_t *) s;
-        return 0.0;
+        if (c == L'.') {
+            if (!hasResult) {
+                // don't allow leading '.'
+                break;
+            }
+            if (isExponent) {
+                // don't allow decimal places in exponent
+                break;
+            }
+            if (decimals != 0) {
+                // this is the 2nd time we've found a '.'
+                break;
+            }
+            decimals = 10;
+            continue;
+        }
+        if ((c == L'-') || (c == L'+')) {
+            if (isExponent) {
+                if (signedExponent || (exponent != 0))
+                    break;
+                else
+                    signedExponent = c;
+            }
+            else {
+                if (signedResult || (result != 0))
+                    break;
+                else
+                    signedResult = c;
+            }
+            continue;
+        }
+        if (c == L'E') {
+            if (!hasResult) {
+                // don't allow leading 'E'
+                break;
+            }
+            if (isExponent)
+                break;
+            else
+                isExponent = true;
+            continue;
+        }
+        // else unexpected character
+        break;
     }
-    for (; 0 < nsig && buf[nsig - 1] == 0; --nsig)
-        ;                           /* skip trailing digits */
+    if (isExponent && !hasExponent) {
+        while (*str != L'E')
+            --str;
+    }
+    if (!hasResult && signedResult)
+        --str;
+
+    if (endptr)
+        *endptr = (wchar_t *) str;
+    for (; exponent != 0; --exponent) {
+        if (signedExponent == L'-')
+            result /= 10;
+        else
+            result *= 10;
+    }
+    if (signedResult == L'-') {
+        if (result != 0)
+            result = -result;
+        // else I'm not used to working with double-precision numbers so I
+        // was surprised to find my assert for "-0" failing, saying -0 != +0.
+    }
+    return result;
 }

@@ -46,6 +46,7 @@ wlite_wcsftime(wchar_t *s, size_t n, const wchar_t *fmt, const struct tm *t) {
     while (n != 0) {
         size_t length = 0;
 
+        // TODO
         if (percent) {
             switch (*fmt) {
             case L'a':      // abbr weekday name (LC_TIME)
