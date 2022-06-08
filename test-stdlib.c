@@ -45,6 +45,40 @@ int main(int argc, char **argv) {
     test(wcstoul(L"54", &s, 4) == 0 && s != NULL && *s == L'5');
     test(wcstoul(L"0xFfg", &s, 16) == 255 && s != NULL && *s == L'g');
 
+/*
+    assert("0", 0, "");
+    assert("12", 12, "");
+    assert("23.5", 23.5, "");
+    assert("-14", -14, "");
+    assert("-", 0, "-");
+    assert("-2-a", -2, "-a");
+    assert("-2a", -2, "a");
+    assert("0.036", 0.036, "");
+    assert("12.5E2", 12.5E2, "");
+    assert("12.5E-3", 12.5E-3, "");
+    assert("12.5E0", 12.5E0, "");
+    assert("12.5E", 12.5, "E");
+    assert("12.5E-", 12.5, "E-");
+    assert("", 0, "");
+    assert("a", 0, "a");
+    assert("E10", 0, "E10");
+    assert("-E10", 0, "-E10");
+    assert("-0E10", 0, "");
+    assert(".3", 0, ".3");
+    assert("-.3", 0, "-.3");
+    strtod("42C", 0); // tests endptr == null
+    assert("+12", 12, "");
+    assert("+-12", 0, "+-12");
+    assert("12.5E+3", 12.5E+3, "");
+    assert("12.5E+-3", 12.5, "E+-3");
+
+assert("12.", 12., "");
+double pz = 0.0;
+double nz = -0.0;
+assert(memcmp(&test_result, &pz, sizeof pz) == 0); // test if canonically the same as +0.0
+assert(memcmp(&test_result, &nz, sizeof nz) == 0); // test if canonically the same as -0.0
+    */
+
     test(mbstowcs(wcs, "abc", 4) == 3 && wcs[1] == L'b');
     test(wcstombs(mbs, wcs, 10) == 3 && strcmp(mbs, "abc") == 0);
 

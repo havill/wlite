@@ -26,6 +26,20 @@
 #include "wlite_wctype.h"
 #include "wlite_stdlib.h"
 
+
+// https://codereview.stackexchange.com/questions/44869/implement-strtod-parsing
+// https://linux.die.net/man/3/wcstod
+
+/*
+ * FIXME
+ * If the correct value is out of the range of representable values for the type,
+ * a positive or negative HUGE_VAL is returned, and errno is set to ERANGE.
+ *
+ * If the correct value would cause underflow, the function returns a value whose
+ * magnitude is no greater than the smallest normalized positive number and
+ * sets errno to ERANGE.
+ */
+
 double
 wlite_wcstod(const wchar_t *str, wchar_t **endptr) {
     double result = 0.0;
@@ -118,10 +132,7 @@ wlite_wcstod(const wchar_t *str, wchar_t **endptr) {
             result *= 10;
     }
     if (signedResult == L'-') {
-        if (result != 0)
-            result = -result;
-        // else I'm not used to working with double-precision numbers so I
-        // was surprised to find my assert for "-0" failing, saying -0 != +0.
+        result = -result;       // in IEEE 754, +0.0 != -0.0
     }
     return result;
 }
